@@ -1,23 +1,309 @@
 aid: bulksms
+
 name: BulkSMS
-description: 'BulkSMS is a company surfaced via the API Evangelist harvest backlog (source: tag-qc) and
-  added to the network as a stub for full-pipeline profiling.'
+
+image: https://www.bulksms.com/images/share/bulksms-social-share-2026.jpg
+
+description: BulkSMS provides a business SMS platform enabling companies to send, receive and manage text messages globally. With over 25 years
+  in business messaging, they support 180+ countries, 800+ local networks, and offer features like web-to-SMS, shortcodes, long numbers, RCS messaging,
+  and integrations via REST, legacy EAPI, and SMPP. Their API allows developers to automate notifications, alerts, and marketing campaigns, backed
+  by robust pricing, compliance, and support resources.
+
 url: https://raw.githubusercontent.com/api-evangelist/bulksms/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: harvest:tag-qc
-x-tier: stub
-x-tier-reason: harvest
+
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-14 (modular-v1; was harvest)
+
 specificationVersion: '0.20'
+
 created: '2026-10-13'
+
 modified: '2026-10-13'
+
 tags:
-- Company
-apis: []
+- SMS
+- Messaging
+- Communications
+- Business
+- BulkSMS
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
 common:
+- type: AgenticAccess
+  url: agentic-access/bulksms-agentic-access.yml
+- type: Spectral
+  url: rules/bulksms-rules.yml
+- type: JSONLD
+  url: json-ld/bulksms-context.jsonld
+- type: Vocabulary
+  url: vocabulary/bulksms-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/bulksms-data-model.yml
+- type: Idempotency
+  url: conventions/bulksms-conventions.yml
+- type: Conventions
+  url: conventions/bulksms-conventions.yml
+- type: ErrorCatalog
+  url: errors/bulksms-problem-types.yml
+- type: Conformance
+  url: conformance/bulksms-conformance.yml
+- type: LLMsTxt
+  url: llms/bulksms-llms.txt
+- type: Hosts
+  url: hosts/bulksms-hosts.yml
+- type: Vendors
+  url: vendors/bulksms-vendors.yml
+- type: SDKs
+  url: packages/bulksms-packages.yml
+- type: Packages
+  url: packages/bulksms-packages.yml
+- type: TermsOfService
+  url: https://www.bulksms.com/company/terms-and-conditions.htm
+- type: Newsroom
+  url: https://www.bulksms.com/resources/news/
+- type: GettingStarted
+  url: https://www.bulksms.com/developer/eapi
+- type: GitHubOrganization
+  url: https://github.com/BulkSMS
+- type: Authentication
+  url: authentication/bulksms-authentication.yml
+- type: DomainSecurity
+  url: security/bulksms-domain-security.yml
 - type: Website
   url: https://www.bulksms.com
+- type: DeveloperPortal
+  url: https://www.bulksms.com/developer/
+- type: Documentation
+  url: https://www.bulksms.com/developer/
+- type: APIReference
+  url: https://www.bulksms.com/developer/
+- type: Pricing
+  url: https://www.bulksms.com/pricing/
+- type: Support
+  url: https://www.bulksms.com/support/
+- type: SignUp
+  url: https://www1.bulksms.com/register/
+- type: Login
+  url: https://www.bulksms.com/account/
+
+apis:
+- aid: bulksms:bulksms-attachments-api
+  name: BulkSMS Attachments API
+  description: Operations related to SMS attachments
+  humanURL: https://www.bulksms.com/developer/
+  baseURL: https://api.bulksms.com/v1
+  tags:
+  - Attachments
+  properties:
+  - type: OpenAPI
+    url: openapi/bulksms-attachments-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/bulksms-submission-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-message-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-webhook-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-profile-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-transfer-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-pre-sign-info-schema.json
+- aid: bulksms:bulksms-blocked-numbers-api
+  name: BulkSMS Blocked Numbers API
+  description: Blocked number management operations
+  humanURL: https://www.bulksms.com/developer/
+  baseURL: https://api.bulksms.com/v1
+  tags:
+  - Blocked Numbers
+  properties:
+  - type: OpenAPI
+    url: openapi/bulksms-blocked-numbers-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/bulksms-submission-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-message-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-webhook-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-profile-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-transfer-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-pre-sign-info-schema.json
+- aid: bulksms:bulksms-credits-api
+  name: BulkSMS Credits API
+  description: Credit management operations
+  humanURL: https://www.bulksms.com/developer/
+  baseURL: https://api.bulksms.com/v1
+  tags:
+  - Credits
+  properties:
+  - type: OpenAPI
+    url: openapi/bulksms-credits-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/bulksms-submission-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-message-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-webhook-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-profile-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-transfer-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-pre-sign-info-schema.json
+- aid: bulksms:bulksms-message-api
+  name: BulkSMS Message API
+  description: >-
+    A message record represents an SMS that has been sent or received.
+
+
+    To send messages, create a `SubmissionEntry` and submit it to the Send Messages Operation.
+
+
+    You can retrieve sent and received messages in a number of ways.
+
+
+    ### Retrieving messages by status
+
+
+    Messages are assigned a status as they progress through their lifecycle.  You can use the List Messages
+    Operation to filter by various statuses.  For the status values used to filter, see the `status.type`
+    and `status.subtype` values of the `Message` object.  You supply a value for the `filter` query parameter
+    following this pattern `status.type==SENT`.  Since more than one messages are normally returned, you
+    can also paginate the result using the `sortOrder` and `limit` query parameters.  Note that `limit`
+    is not the only way to limit the number of records.  The result will also be limited by the `filter.submissionDate`
+    property.  The default value for this property is `NOW() - 7 days`.
+
+
+    Messages can also be retrieved by the webhook mechanism.  See the [webhooks page](/developer/webhooks/)
+    for more information.
+
+
+    ### Sending and receiving messages
+
+
+    The examples shown in this section are for a single message submission.
+
+
+    If you need to send a single text message to one or more recipients you will need to create a `SubmissionEntry`
+    object and submit it to the Send Messages Operation.  For more advanced submission types, make use
+    of the [Send Messages Operation](#tag/message/POST/messages) which supports batch sending (by submitting
+    an array) and scheduling (via the `schedule-date` query parameter).
+
+
+    The following fields can be set for a `SubmissionEntry`:
+
+    - the `to` field is required and contains the phone number or group details
+
+    - the `body` field is required and contains the message content
+
+    - other fields like `from`, `routingGroup`, `encoding`, etc. are optional
+
+
+    ### Body Templates
+
+
+    When sending a message you can use template fields to customise the message text.
+
+
+    *Field based templates* allow you to create a message with place-holders for custom fields.  Fields
+    are identified by a zero based index; the first field is `F0`, the second is `F1` and so on.
+
+
+    For example, if you want to send a message "Welcome Jack, you owe $200.00", supply the body as `"Welcome
+    {F0######}, you owe {F1######}"` and send `"fields": ["Jack", "$200.00"]` in the relevant `to` entry.  The
+    `#` characters specify the maximum length of the field.
+
+
+    If you are sending to contacts in your phonebook, you can use *Phonebook based templates*.  The template
+    for the contact's first name is `{fn######}` and the surname is `{sn######}`.
+
+
+    See the [Send Messages Operation](#tag/message/POST/messages) for detailed examples.
+  humanURL: https://www.bulksms.com/developer/
+  baseURL: https://api.bulksms.com/v1
+  tags:
+  - Message
+  properties:
+  - type: OpenAPI
+    url: openapi/bulksms-message-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/bulksms-submission-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-message-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-webhook-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-profile-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-transfer-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-pre-sign-info-schema.json
+- aid: bulksms:bulksms-profile-api
+  name: BulkSMS Profile API
+  description: Operations related to the profile of the user
+  humanURL: https://www.bulksms.com/developer/
+  baseURL: https://api.bulksms.com/v1
+  tags:
+  - Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/bulksms-profile-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/bulksms-submission-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-message-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-webhook-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-profile-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-transfer-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-pre-sign-info-schema.json
+- aid: bulksms:bulksms-webhooks-api
+  name: BulkSMS Webhooks API
+  description: >-
+    Manage webhooks that notify your server when messages are sent or received.
+
+
+    For full details on implementing your webhook — including event types, request headers, payload structure,
+    retry logic, and testing — see the [Webhook Developer Guide](/developer/webhooks/).
+  humanURL: https://www.bulksms.com/developer/
+  baseURL: https://api.bulksms.com/v1
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/bulksms-webhooks-api-openapi.yml
+  - type: JSONSchema
+    url: json-schema/bulksms-submission-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-message-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-webhook-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-profile-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-transfer-entry-schema.json
+  - type: JSONSchema
+    url: json-schema/bulksms-pre-sign-info-schema.json
+x-enrichment:
+  date: '2026-10-14'
+  status: enriched
+  artifacts_added: 29
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

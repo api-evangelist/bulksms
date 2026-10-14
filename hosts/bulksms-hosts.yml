@@ -1,0 +1,91 @@
+generated: '2026-10-14'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 5
+  own: 4
+  other_domain: 0
+  platform: 1
+  roles:
+  - api
+  - identity
+  - portal
+  - source
+  - website
+hosts:
+- host: api.bulksms.com
+  found_by:
+  - apis[]
+  - contract-discovery
+  types: []
+  serves:
+  - api
+  registrable_domain: bulksms.com
+  role: api
+  relation: own
+- host: developer.bulksms.com
+  found_by:
+  - probed
+  - site-links
+  - namespace-probe
+  - contract-discovery
+  - well-known
+  types: []
+  serves: []
+  title: BulkSMS.com Developers
+  status: 200
+  registrable_domain: bulksms.com
+  role: portal
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - GitHubOrganization
+  serves: []
+  registrable_domain: github.com
+  role: source
+  relation: platform
+- host: www.bulksms.com
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - docs-index
+  - spec-found
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - TermsOfService
+  - Newsroom
+  - GettingStarted
+  - Website
+  - DeveloperPortal
+  - Documentation
+  - APIReference
+  - Pricing
+  - Support
+  - Login
+  serves:
+  - docs
+  - spec
+  - cdn
+  vendor: cloudfront
+  registrable_domain: bulksms.com
+  role: website
+  relation: own
+- host: www1.bulksms.com
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types:
+  - SignUp
+  serves: []
+  registrable_domain: bulksms.com
+  role: identity
+  relation: own

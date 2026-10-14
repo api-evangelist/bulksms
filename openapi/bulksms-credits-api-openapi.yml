@@ -1,0 +1,156 @@
+openapi: 3.2.0
+info:
+  title: BulkSMS JSON REST Credits API
+  version: 1.1.0
+  x-logo:
+    url: /developer/images/bulksms-logo-main.svg
+    backgroundColor: '#FFFFFF'
+  description: '## Overview
+
+
+    The JSON REST API allows you to submit and receive BulkSMS messages.'
+servers:
+- url: https://api.bulksms.com/v1
+  description: Production
+security:
+- basicAuth: []
+tags:
+- name: Credits
+  description: Credit management operations
+paths:
+  /credit/transfer:
+    post:
+      tags:
+      - Credits
+      operationId: credit.transfer
+      summary: Transfer credits to another account
+      description: 'Before you can use the transfer credits endpoint, the _credit-transfer facility_ must be activated for your account. You can request activation from `support@bulksms.com`.
+
+
+        The recipient must be an enabled account that uses the same currency as your account.'
+      requestBody:
+        required: true
+        description: Contains details of the transfer request.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferEntry'
+      responses:
+        '200':
+          description: An empty body when the credits were transferred OK.
+        '403':
+          description: When there are not enough credits in your account or the credit transfer facility is not activated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                type: https://developer.bulksms.com/json/v1/errors/#insufficient-credits
+                title: Insufficient Credits
+                status: 403
+        '400':
+          description: When the request fails validation checks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                type: https://developer.bulksms.com/json/v1/errors/#bad-request
+                title: Bad Request
+                status: 400
+components:
+  schemas:
+    Error:
+      description: See the errors page at https://www.bulksms.com/developer/json/v1/errors/ for more detail on what kind of errors you can get.
+      type: object
+      required:
+      - type
+      - title
+      - status
+      properties:
+        type:
+          description: A URL to one of the error types listed at https://www.bulksms.com/developer/json/v1/errors/
+          type: string
+        title:
+          description: A short description of the type
+          type: string
+        status:
+          description: The HTTP status code
+          type: integer
+          format: int32
+          example: 400
+        detail:
+          description: More information about why the error occurred.
+          type: string
+    TransferEntry:
+      type: object
+      required:
+      - toUsername
+      - toUserId
+      - credits
+      properties:
+        toUsername:
+          type: string
+          example: roboto
+          description: 'The username of the account that will receive the credits.
+
+            '
+        toUserId:
+          type: number
+          example: 2345
+          description: 'The numeric user ID of the account that will receive the credits.
+
+            The ID must match the username.
+
+            '
+        credits:
+          type: number
+          example: 2345
+          description: 'The amount of credits to transfer.
+
+            '
+        commentOnFrom:
+          type: string
+          example: Transfer to Bobby
+          description: 'An optional note that will be shown on the credit history of your account.
+
+            The maximum length of the comment is 100.
+
+            '
+        commentOnTo:
+          type: string
+          example: Transfer from Danny
+          description: 'An optional note that will be shown on the credit history of the recipient''s account.
+
+            The maximum length of the comment is 100.
+
+            '
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'The API uses HTTP Basic Auth with an **API Token** for authentication.
+
+
+        API tokens can be created by logging into your account and visiting _Settings > Developer Settings > API Tokens_.
+
+
+        Supply the token ID as the username and the token secret as the password. The values must be [Base64 encoded](https://en.wikipedia.org/wiki/Base64) before using them in the `Authorization` header.
+
+
+        For example, if the token ID is `BBDE1B476E03498AA768F66A286AABDC-01-B` and the token secret is `9jSbVDK20!MXdfRGiIIFu#ffUE8*S`, the unencoded header value is `BBDE1B476E03498AA768F66A286AABDC-01-B:9jSbVDK20!MXdfRGiIIFu#ffUE8*S`.  After encoding, the full header becomes
+
+
+        ```
+
+        Authorization: Basic QkJERTFCNDc2RTAzNDk4QUE3NjhGNjZBMjg2QUFCREMtMDEtQjo5alNiVkRLMjAhTVhkZlJHaUlJRnUjZmZVRTgqUw==
+
+        ```
+
+
+        You are requested to preemptively provide the `Authorization` header in your requests and not wait until the server has provided a `401 Unauthorized` response. Doing so will reduce the number of requests required to achieve your goal, which will improve overall performance.
+
+
+        > **Username and password authentication is no longer supported.** Accounts created after 2026-04-29 can only authenticate with an API token. If you have a legacy integration that cannot be switched to token-based authentication, please [contact Support](https://www.bulksms.com/contact/) to request an exemption.
+
+        '

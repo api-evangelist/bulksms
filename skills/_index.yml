@@ -1,0 +1,26 @@
+generated: '2026-10-14'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/bulksms-openapi.yaml
+skills:
+- file: skills/bulksms-send-message.md
+  name: bulksms-send-message
+  api: openapi/bulksms-openapi.yaml
+  operations:
+  - message.send
+  - message.show
+- file: skills/bulksms-manage-webhooks.md
+  name: bulksms-manage-webhooks
+  api: openapi/bulksms-openapi.yaml
+  operations:
+  - webhook.list
+  - webhook.create
+  - webhook.show
+  - webhook.update
+  - webhook.delete
+- file: skills/bulksms-blocked-numbers-manage.md
+  name: bulksms-blocked-numbers-manage
+  api: openapi/bulksms-openapi.yaml
+  operations:
+  - blocked.list
+  - blocked.create

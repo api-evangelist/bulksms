@@ -1,0 +1,136 @@
+openapi: 3.2.0
+info:
+  title: BulkSMS JSON REST Attachments API
+  version: 1.1.0
+  x-logo:
+    url: /developer/images/bulksms-logo-main.svg
+    backgroundColor: '#FFFFFF'
+  description: '## Overview
+
+
+    The JSON REST API allows you to submit and receive BulkSMS messages.'
+servers:
+- url: https://api.bulksms.com/v1
+  description: Production
+security:
+- basicAuth: []
+tags:
+- name: Attachments
+  description: Operations related to SMS attachments
+paths:
+  /rmm/pre-sign-attachment:
+    post:
+      tags:
+      - Attachments
+      operationId: attachment.presign
+      summary: Upload an attachment via a signed URL
+      description: 'When composing an SMS, you can add SMS attachments by adding a URL to your text. When the recipient clicks on the URL, the attached file will be downloaded and opened on their mobile device.
+
+
+        The best way to do this is to store the file on a web server you own and use that URL in the SMS text. This URL will be easily recognisable to your message recipient and ties your message back to your brand or company.
+
+
+        If that''s not possible, you can use BulkSMS storage to keep the files that you want to attach to your SMS. These files will be deleted after 30 days as per our fair use policy.
+
+
+        We recommend you keep this file size below 20 MB, as larger files may be deleted without warning.
+
+
+        To use the BulkSMS storage, follow these three steps:
+
+
+        **Step 1**: Use your API Token to request a pre-signed URL. This is what this `pre-sign-attachment` method is for. It returns a PreSignInfo object that you will use in the other two steps.
+
+
+        **Step 2**: Upload the file using a standard HTTP `PUT` request. For your `PUT` request, use the value of `putURL` from the PreSignInfo object as the request address. You also have to add the entries from the `fields` property (of the PreSignInfo object) to the headers of your ''PUT'' request. You send the file content as the body of the `PUT` request.
+
+
+        **Step 3**: Now you can use the value of `fetchURL` from the PreSignInfo object in the body of your SMS messages and send those using the usual messaging API (described elsewhere in this document). If you send the same file to many recipients, it is safe to use the same URL for all of them.
+
+
+        If you need to, take a closer look at the example program (on the right-hand side) to get a better idea of how to implement this process.'
+      requestBody:
+        required: true
+        description: Describes the file to upload
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreSignRequest'
+      responses:
+        '200':
+          description: A PreSignInfo object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PreSignInfo'
+      x-codeSamples:
+      - lang: C#
+        label: C# Complete Example
+        source: "using System;\nusing System.IO;\nusing System.Net.Http;\nusing System.Net.Http.Headers;\nusing System.Text;\nusing System.Text.Json;\nusing System.Threading.Tasks;\n\nclass Program\n{\n    const string TokenId = \"your-token-id\";\n    const string TokenSecret = \"your-token-secret\";\n    const string PhoneNumber = \"1111111\";\n    const string FilePath = \"path/to/file.pdf\";\n\n    static readonly HttpClient Client = new();\n\n    static async Task Main()\n    {\n        var auth = Convert.ToBase64String(Encoding.UTF8.GetBytes($\"{TokenId}:{TokenSecret}\"));\n        Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(\"Basic\", auth);\n\n        // Step 1: Get a pre-signed upload URL\n        var signJson = \"\"\"{\"fileExtension\": \"pdf\", \"mediaType\": \"application/pdf\"}\"\"\";\n        var signResponse = await Client.PostAsync(\n            \"https://api.bulksms.com/v1/rmm/pre-sign-attachment\",\n            new StringContent(signJson, Encoding.UTF8, \"application/json\"));\n        var signInfo = JsonSerializer.Deserialize<PreSignInfo>(await signResponse.Content.ReadAsStringAsync());\n\n        // Step 2: Upload the file to the signed URL\n        var uploadRequest = new HttpRequestMessage(HttpMethod.Put, signInfo.putUrl);\n        uploadRequest.Content = new StreamContent(File.OpenRead(FilePath));\n        foreach (var field in signInfo.fields)\n            uploadRequest.Content.Headers.TryAddWithoutValidation(field.name, field.value);\n        await Client.SendAsync(uploadRequest);\n\n        // Step 3: Send a message with the attachment URL\n        var msgJson = $\"\"\"{{ \"to\": \"{PhoneNumber}\", \"body\": \"See attachment: {signInfo.fetchUrl}\" }}\"\"\";\n        var msgResponse = await Client.PostAsync(\n            \"https://api.bulksms.com/v1/messages?auto-unicode=true\",\n            new StringContent(msgJson, Encoding.UTF8, \"application/json\"));\n\n        Console.WriteLine(await msgResponse.Content.ReadAsStringAsync());\n    }\n\n    record PreSignInfo(string putUrl, string fetchUrl, Field[] fields);\n    record Field(string name, string value);\n}\n"
+components:
+  schemas:
+    PreSignInfo:
+      type: object
+      properties:
+        putUrl:
+          type: string
+          description: The address of the PUT request to upload the file.
+          example: https://some.place/aethzd.pdf?Token=IQoJb3JpZ2luX2EP3
+        fetchUrl:
+          type: string
+          description: The URL you use in your SMS text.  It is the file location.
+          example: https://smsattach.it/bedhkd.pdf
+        fields:
+          type: array
+          description: Name value objects to add to the headers of the PUT request.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: The header name
+                example: x-amz-acl
+              value:
+                type: string
+                description: The header value
+                example: public-read
+    PreSignRequest:
+      type: object
+      properties:
+        fileExtension:
+          type: string
+          description: The extension of the file.  Usually related to the media type.
+          example: pdf
+        mediaType:
+          type: string
+          description: The media type of the file you would like to upload.  If you are not sure what value to use here, check out the standard [list of media types](https://www.iana.org/assignments/media-types/media-types.xhtml).
+          example: application/pdf
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'The API uses HTTP Basic Auth with an **API Token** for authentication.
+
+
+        API tokens can be created by logging into your account and visiting _Settings > Developer Settings > API Tokens_.
+
+
+        Supply the token ID as the username and the token secret as the password. The values must be [Base64 encoded](https://en.wikipedia.org/wiki/Base64) before using them in the `Authorization` header.
+
+
+        For example, if the token ID is `BBDE1B476E03498AA768F66A286AABDC-01-B` and the token secret is `9jSbVDK20!MXdfRGiIIFu#ffUE8*S`, the unencoded header value is `BBDE1B476E03498AA768F66A286AABDC-01-B:9jSbVDK20!MXdfRGiIIFu#ffUE8*S`.  After encoding, the full header becomes
+
+
+        ```
+
+        Authorization: Basic QkJERTFCNDc2RTAzNDk4QUE3NjhGNjZBMjg2QUFCREMtMDEtQjo5alNiVkRLMjAhTVhkZlJHaUlJRnUjZmZVRTgqUw==
+
+        ```
+
+
+        You are requested to preemptively provide the `Authorization` header in your requests and not wait until the server has provided a `401 Unauthorized` response. Doing so will reduce the number of requests required to achieve your goal, which will improve overall performance.
+
+
+        > **Username and password authentication is no longer supported.** Accounts created after 2026-04-29 can only authenticate with an API token. If you have a legacy integration that cannot be switched to token-based authentication, please [contact Support](https://www.bulksms.com/contact/) to request an exemption.
+
+        '

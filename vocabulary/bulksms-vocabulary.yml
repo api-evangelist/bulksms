@@ -1,0 +1,100 @@
+generated: '2026-10-14'
+method: derived
+generator: derive-vocabulary.py
+source: openapi/bulksms-openapi.yaml
+vocabulary:
+  name: BulkSMS Domain Vocabulary
+  description: 'Terms declared by BulkSMS''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-14'
+  terms:
+  - term: Authentication
+    definition: 'All API requests require authentication using [HTTP Basic Auth](https://en.wikipedia.org/wiki/Basic_access_authentication) with
+      an **API Token**. ### Creating an API Token Create a new token in your account at [Settings > Developers > API Tokens](https://www.bulksms.com/account/ui/index.html#/account/dev/api-tokens).
+      ### Using the Token Supply the **token ID** as the username and the **token secre'
+    tags:
+    - Resource Group
+    source: openapi/bulksms-openapi.yaml
+  - term: Message
+    definition: 'A message record represents an SMS that has been sent or received. To send messages, create a `SubmissionEntry` and submit it
+      to the Send Messages Operation. You can retrieve sent and received messages in a number of ways. ### Retrieving messages by status Messages
+      are assigned a status as they progress through their lifecycle. You can use the List Messages Operation to filter by various statuses.'
+    tags:
+    - Resource Group
+    source: openapi/bulksms-openapi.yaml
+  - term: Profile
+    definition: Operations related to the profile of the user
+    tags:
+    - Resource Group
+    source: openapi/bulksms-openapi.yaml
+  - term: Webhooks
+    definition: Manage webhooks that notify your server when messages are sent or received. For full details on implementing your webhook — including
+      event types, request headers, payload structure, retry logic, and testing — see the [Webhook Developer Guide](/developer/webhooks/).
+    tags:
+    - Resource Group
+    source: openapi/bulksms-openapi.yaml
+  - term: Credits
+    definition: Credit management operations
+    tags:
+    - Resource Group
+    source: openapi/bulksms-openapi.yaml
+  - term: Blocked Numbers
+    definition: Blocked number management operations
+    tags:
+    - Resource Group
+    source: openapi/bulksms-openapi.yaml
+  - term: Attachments
+    definition: Operations related to SMS attachments
+    tags:
+    - Resource Group
+    source: openapi/bulksms-openapi.yaml
+  - term: PreSignRequest
+    definition: 'Object declared by the contract with fields: fileExtension, mediaType.'
+    tags:
+    - Object
+    source: openapi/bulksms-openapi.yaml#/components/schemas/PreSignRequest
+  - term: PreSignInfo
+    definition: 'Object declared by the contract with fields: putUrl, fetchUrl, fields.'
+    tags:
+    - Object
+    source: openapi/bulksms-openapi.yaml#/components/schemas/PreSignInfo
+  - term: SubmissionEntry
+    definition: An object that you use when posting messages.
+    tags:
+    - Object
+    source: openapi/bulksms-openapi.yaml#/components/schemas/SubmissionEntry
+  - term: Recipient
+    definition: A structured recipient object
+    tags:
+    - Object
+    source: openapi/bulksms-openapi.yaml#/components/schemas/Recipient
+  - term: TransferEntry
+    definition: 'Object declared by the contract with fields: toUsername, toUserId, credits, commentOnFrom, commentOnTo.'
+    tags:
+    - Object
+    source: openapi/bulksms-openapi.yaml#/components/schemas/TransferEntry
+  - term: WebhookEntry
+    definition: 'Object declared by the contract with fields: name, url, contactEmailAddress, triggerScope, invokeOption, active, onWebApp.'
+    tags:
+    - Object
+    source: openapi/bulksms-openapi.yaml#/components/schemas/WebhookEntry
+  - term: Webhook
+    definition: 'Object declared by the contract with fields: id, name, url, contactEmailAddress, triggerScope, active, onWebApp.'
+    tags:
+    - Object
+    source: openapi/bulksms-openapi.yaml#/components/schemas/Webhook
+  - term: Error
+    definition: See the errors page at https://www.bulksms.com/developer/json/v1/errors/ for more detail on what kind of errors you can get.
+    tags:
+    - Object
+    source: openapi/bulksms-openapi.yaml#/components/schemas/Error
+  - term: PhoneNumber
+    definition: A phone number in E.164 format
+    tags:
+    - Object
+    source: openapi/bulksms-openapi.yaml#/components/schemas/PhoneNumber
+  - term: BlockedNumber
+    definition: 'Object declared by the contract with fields: id, phoneNumber, created, description.'
+    tags:
+    - Object
+    source: openapi/bulksms-openapi.yaml#/components/schemas/BlockedNumber

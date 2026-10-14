@@ -1,0 +1,20 @@
+generated: '2026-10-14'
+method: derived
+source: openapi/bulksms-openapi.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: |-
+    The API uses HTTP Basic Auth with an **API Token** for authentication.
+
+    API tokens can be created by logging into your account and visiting _Settings > Developer Settings > API Tokens_.
+
+    Supply the token ID as the username and the token secret as the password. The values must be [Base64 encoded](https://en.wikipedia.org/wiki/Base64) before using them in the `Authorization` header.
+
+    For example, if
+  sources:
+  - openapi/bulksms-openapi.yaml

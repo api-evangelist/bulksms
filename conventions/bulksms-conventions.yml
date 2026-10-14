@@ -1,0 +1,12 @@
+generated: '2026-10-14'
+method: derived
+generator: derive-conformance.py
+source: openapi/ (1 document(s), 7 mutating operations)
+idempotency:
+  scope:
+  - message.send
+  coverage: partial
+  header: deduplication-id
+  mechanism: request header / body token declared in the OpenAPI
+  evidence: deduplication-id on 1 of 7 mutating operations
+  verified: derived

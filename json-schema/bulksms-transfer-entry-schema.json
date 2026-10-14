@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bulksms/main/json-schema/bulksms-transfer-entry-schema.json",
+  "title": "TransferEntry",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/bulksms-openapi.yaml#/components/schemas/TransferEntry",
+  "type": "object",
+  "required": [
+    "toUsername",
+    "toUserId",
+    "credits"
+  ],
+  "properties": {
+    "toUsername": {
+      "type": "string",
+      "description": "The username of the account that will receive the credits.\n"
+    },
+    "toUserId": {
+      "type": "number",
+      "description": "The numeric user ID of the account that will receive the credits.\nThe ID must match the username.\n"
+    },
+    "credits": {
+      "type": "number",
+      "description": "The amount of credits to transfer.\n"
+    },
+    "commentOnFrom": {
+      "type": "string",
+      "description": "An optional note that will be shown on the credit history of your account.\nThe maximum length of the comment is 100.\n"
+    },
+    "commentOnTo": {
+      "type": "string",
+      "description": "An optional note that will be shown on the credit history of the recipient's account.\nThe maximum length of the comment is 100.\n"
+    }
+  }
+}

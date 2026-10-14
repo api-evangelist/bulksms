@@ -1,0 +1,35 @@
+generated: '2026-10-14'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/bulksms-openapi.yaml
+format: custom
+envelope:
+  media_type: application/json
+  schema: Error
+coverage:
+  operations: 15
+  statuses_declared: 3
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad Request. The content or structure of your submission, or a parameter, was found to be invalid.
+  operations: 9
+  media_types:
+  - application/json
+  schema: Error
+- status: 403
+  title: Forbidden
+  description: Forbidden.  Inspect the body of the response for further details - for example, you may have insufficient
+    credits remaining
+  operations: 3
+  media_types:
+  - application/json
+  schema: Error
+- status: 404
+  title: Not Found
+  description: A webhook with the given id does not exist
+  operations: 4
+  media_types:
+  - application/json
+  schema: Error

@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bulksms/main/json-schema/bulksms-profile-schema.json",
+  "title": "Profile",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/bulksms-openapi.yaml#/components/schemas/Profile",
+  "type": "object",
+  "required": [
+    "id",
+    "username",
+    "created",
+    "credits",
+    "quota"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "credits": {
+      "type": "object",
+      "properties": {
+        "balance": {
+          "type": "number",
+          "format": "float"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "isTransferAllowed": {
+          "type": "boolean"
+        }
+      }
+    },
+    "quota": {
+      "type": "object",
+      "required": [
+        "size",
+        "remaining"
+      ],
+      "properties": {
+        "size": {
+          "description": "The setting that limits the number of messages you can send in a day.",
+          "type": "integer",
+          "format": "int32"
+        },
+        "remaining": {
+          "description": "The number of messages you can still send today.",
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "originAddresses": {
+      "type": "object",
+      "properties": {
+        "isFullControlAllowed": {
+          "type": "boolean"
+        },
+        "allowed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "company": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "taxReference": {
+          "type": "string"
+        }
+      }
+    },
+    "commerce": {
+      "type": "object",
+      "properties": {
+        "bankPaymentReference": {
+          "type": "string"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "street": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "city": {
+              "type": "string"
+            },
+            "region": {
+              "type": "string"
+            },
+            "country": {
+              "type": "string"
+            },
+            "postalCode": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+generated: '2026-10-14'
+method: probed
+generator: harvest-packages.py
+source: registry metadata endpoints (registry.npmjs.org, pypi.org, rubygems.org, api.nuget.org, packagist.org, crates.io) ; github.com/BulkSMS
+ownership_rule: 'official: true only when the registry metadata (homepage, repository, author, URLs) names the provider''s domain (bulksms.com,
+  security/bulksms-domain-security.yml) or its accepted GitHub org (BulkSMS).'
+packages:
+- name: bulksms
+  registry: npm
+  url: https://www.npmjs.com/package/bulksms
+  language: JavaScript
+  official: true
+  version: 0.0.3
+  published: '2017-02-21'
+  evidence: metadata names bulksms.com
+- name: bulksms
+  registry: pypi
+  url: https://pypi.org/project/bulksms/
+  language: Python
+  official: true
+  version: 1.1.1
+  published: '2024-12-03'
+  evidence: metadata names bulksms.com
+- name: bulksms
+  registry: rubygems
+  url: https://rubygems.org/gems/bulksms
+  language: Ruby
+  official: false
+  version: 0.5.2
+  published: '2012-02-01'
+  evidence: 'name match only: the metadata names neither the provider''s domain nor its GitHub org'

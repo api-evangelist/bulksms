@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/bulksms/main/json-schema/bulksms-pre-sign-info-schema.json",
+  "title": "PreSignInfo",
+  "x-generated": "2026-10-14",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/bulksms-openapi.yaml#/components/schemas/PreSignInfo",
+  "type": "object",
+  "properties": {
+    "putUrl": {
+      "type": "string",
+      "description": "The address of the PUT request to upload the file."
+    },
+    "fetchUrl": {
+      "type": "string",
+      "description": "The URL you use in your SMS text.  It is the file location."
+    },
+    "fields": {
+      "type": "array",
+      "description": "Name value objects to add to the headers of the PUT request.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The header name"
+          },
+          "value": {
+            "type": "string",
+            "description": "The header value"
+          }
+        }
+      }
+    }
+  }
+}
