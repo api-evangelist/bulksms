@@ -137,19 +137,6 @@ paths:
           $ref: '#/components/responses/bad-webhook-id'
 components:
   responses:
-    bad-webhook-url:
-      description: The url given for the webhook is not callable
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            type: https://developer.bulksms.com/json/v1/errors/#bad-request
-            title: Bad Request
-            status: 400
-            detail: 'Invoking the Webhook URL caused an error: 403 - Forbidden
-
-              '
     bad-webhook-id:
       description: A webhook with the given id does not exist
       content:
@@ -161,6 +148,19 @@ components:
             title: Not Found
             status: 404
             detail: 'Webhook with id ''1'' does not exist
+
+              '
+    bad-webhook-url:
+      description: The url given for the webhook is not callable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            type: https://developer.bulksms.com/json/v1/errors/#bad-request
+            title: Bad Request
+            status: 400
+            detail: 'Invoking the Webhook URL caused an error: 403 - Forbidden
 
               '
   schemas:

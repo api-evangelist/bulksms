@@ -1,7 +1,7 @@
 {
   "provider": "bulksms",
   "sources": [
-    "bulksms-openapi.yaml"
+    "_original/bulksms-openapi.yaml"
   ],
   "outputs": [
     "bulksms-attachments-api-openapi.yml",
@@ -11,14 +11,20 @@
     "bulksms-profile-api-openapi.yml",
     "bulksms-webhooks-api-openapi.yml"
   ],
-  "archived": [
-    "archived openapi/bulksms-openapi.yaml"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "bulksms-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apis.yml register: written (+6 apis, 6 total)"
+    "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "bulksms-attachments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bulksms-blocked-numbers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bulksms-credits-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bulksms-message-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bulksms-profile-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "bulksms-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

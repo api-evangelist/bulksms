@@ -535,28 +535,6 @@ paths:
         '403':
           $ref: '#/components/responses/credits'
 components:
-  responses:
-    credits:
-      description: Forbidden.  Inspect the body of the response for further details - for example, you may have insufficient credits remaining
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            type: https://developer.bulksms.com/json/v1/errors#insufficient-credits
-            title: Insufficient Credits
-            status: 403
-    bad-request:
-      description: Bad Request. The content or structure of your submission, or a parameter, was found to be invalid.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            type: https://developer.bulksms.com/json/v1/errors/#bad-request
-            title: Bad Request
-            status: 400
-            detail: 'Request body is not valid: ...'
   schemas:
     SubmissionEntry:
       description: An object that you use when posting messages.
@@ -824,6 +802,41 @@ components:
           - ALL
           - ERRORS
           - NONE
+    Recipient:
+      type: object
+      description: A structured recipient object
+      properties:
+        type:
+          description: Type of the recipient. The default value is INTERNATIONAL.
+          type: string
+          enum:
+          - INTERNATIONAL
+          - GROUP
+        address:
+          description: The phone number of the recipient.  It must be supplied if the `type` is INTERNATIONAL
+          type: string
+        name:
+          description: The name of a group in your phonebook. A value can be given if the `type` is GROUP.
+          type: string
+        id:
+          description: The id of a group in your phonebook.  A value can be given if the `type` is GROUP.
+          type: string
+        fields:
+          type: array
+          description: 'Custom fields that can be used in the message body. A value can be given if the `type` is INTERNATIONAL
+
+
+            Read the [body templates section](#tag/message) for more information.
+
+            '
+          items:
+            type: string
+      example:
+        type: INTERNATIONAL
+        address: '1111111'
+        fields:
+        - Jack
+        - $200.00
     Message:
       type: object
       required:
@@ -980,41 +993,6 @@ components:
           - string
           - 'null'
           example: null
-    Recipient:
-      type: object
-      description: A structured recipient object
-      properties:
-        type:
-          description: Type of the recipient. The default value is INTERNATIONAL.
-          type: string
-          enum:
-          - INTERNATIONAL
-          - GROUP
-        address:
-          description: The phone number of the recipient.  It must be supplied if the `type` is INTERNATIONAL
-          type: string
-        name:
-          description: The name of a group in your phonebook. A value can be given if the `type` is GROUP.
-          type: string
-        id:
-          description: The id of a group in your phonebook.  A value can be given if the `type` is GROUP.
-          type: string
-        fields:
-          type: array
-          description: 'Custom fields that can be used in the message body. A value can be given if the `type` is INTERNATIONAL
-
-
-            Read the [body templates section](#tag/message) for more information.
-
-            '
-          items:
-            type: string
-      example:
-        type: INTERNATIONAL
-        address: '1111111'
-        fields:
-        - Jack
-        - $200.00
     Error:
       description: See the errors page at https://www.bulksms.com/developer/json/v1/errors/ for more detail on what kind of errors you can get.
       type: object
@@ -1037,6 +1015,28 @@ components:
         detail:
           description: More information about why the error occurred.
           type: string
+  responses:
+    credits:
+      description: Forbidden.  Inspect the body of the response for further details - for example, you may have insufficient credits remaining
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            type: https://developer.bulksms.com/json/v1/errors#insufficient-credits
+            title: Insufficient Credits
+            status: 403
+    bad-request:
+      description: Bad Request. The content or structure of your submission, or a parameter, was found to be invalid.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            type: https://developer.bulksms.com/json/v1/errors/#bad-request
+            title: Bad Request
+            status: 400
+            detail: 'Request body is not valid: ...'
   securitySchemes:
     basicAuth:
       type: http
