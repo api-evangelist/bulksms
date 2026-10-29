@@ -64,5 +64,134 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-BulkSMS is a company surfaced via the API Evangelist harvest backlog (source: tag-qc) and added to the network as a stub for full-pipeline profiling.
-- https://www.bulksms.com
+BulkSMS provides a business SMS platform enabling companies to send, receive and manage text messages globally. With over 25 years in business messaging, they support 180+ countries, 800+ local networks, and offer features like web-to-SMS, shortcodes, long numbers, RCS messaging, and integrations via REST, legacy EAPI, and SMPP. Their API allows developers to automate notifications, alerts, and marketing campaigns, backed by robust pricing, compliance, and support resources.
+
+**Areas:** SMS · Messaging · Communications · Business · Bulk SMS
+
+## BulkSMS on APIs.io
+
+Everything profiled for BulkSMS is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bulksms/](https://apis.io/providers/bulksms/)** — or go straight to one of the APIs or properties below.
+
+### APIs (6)
+
+- [BulkSMS Attachments API](https://apis.io/apis/bulksms/bulksms-attachments-api/) — Operations related to SMS attachments
+- [BulkSMS Blocked Numbers API](https://apis.io/apis/bulksms/bulksms-blocked-numbers-api/) — Blocked number management operations
+- [BulkSMS Credits API](https://apis.io/apis/bulksms/bulksms-credits-api/) — Credit management operations
+- [BulkSMS Message API](https://apis.io/apis/bulksms/bulksms-message-api/) — A message record represents an SMS that has been sent or received. To send messages, create a `SubmissionEntry` and submit it to the Send Messages…
+- [BulkSMS Profile API](https://apis.io/apis/bulksms/bulksms-profile-api/) — Operations related to the profile of the user
+- [BulkSMS Webhooks API](https://apis.io/apis/bulksms/bulksms-webhooks-api/) — Manage webhooks that notify your server when messages are sent or received. For full details on implementing your webhook — including event types, request…
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Bulksms Agentic Access](https://apis.io/agentic-access/bulksms/bulksms-agentic-access/)
+
+#### JSON Schema (6)
+
+The data models the API reads and writes.
+
+- [Message](https://apis.io/schemas/bulksms/bulksms-message/)
+- [PreSignInfo](https://apis.io/schemas/bulksms/bulksms-pre-sign-info/)
+- [Profile](https://apis.io/schemas/bulksms/bulksms-profile/)
+- [SubmissionEntry](https://apis.io/schemas/bulksms/bulksms-submission-entry/)
+- [TransferEntry](https://apis.io/schemas/bulksms/bulksms-transfer-entry/)
+- [WebhookEntry](https://apis.io/schemas/bulksms/bulksms-webhook-entry/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Bulksms Context](https://apis.io/jsonld/bulksms/bulksms-context/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [BulkSMS API Rules](https://apis.io/rules/bulksms/bulksms-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Bulksms Authentication](https://apis.io/security/bulksms/bulksms-authentication/)
+- [Bulksms Domain Security](https://apis.io/security/bulksms/bulksms-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Bulksms Plans Pricing](https://apis.io/plans/bulksms/bulksms-plans-pricing/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.bulksms.com)
+- [Documentation](https://www.bulksms.com/developer/)
+- [Getting started](https://www.bulksms.com/developer/eapi)
+- [API reference](https://www.bulksms.com/developer/)
+- [Pricing](https://www.bulksms.com/pricing/)
+- [Sign up](https://www1.bulksms.com/register/)
+- [Support](https://www.bulksms.com/support/)
+- [Terms of service](https://www.bulksms.com/company/terms-and-conditions.htm)
+- [GitHub](https://github.com/BulkSMS)
+
+## API Evangelist rating
+
+**Kin Score 45.0** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 75.0 |
+| Contract quality | 63.0 |
+| Contract governance | 22.0 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 63.7 |
+| Access clarity | 34.2 |
+
+**Agent readiness 29.5** — agent-ready
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | derived (partial credit) |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 17.5** — Telecommunications
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bulksms/](https://apis.io/providers/bulksms/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for BulkSMS: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bulksms/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
